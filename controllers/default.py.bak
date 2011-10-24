@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+### required - do no delete
+def user(): return dict(form=auth())
+def download(): return response.download(request,db)
+def call(): return service()
+### end requires
+def index():
+    courses = db(db.courses.id > 0).select()
+    return dict(courses = courses)
+
+def error():
+    return dict()
+
+@auth.requires_login()
+def grades_manage():
+    form = SQLFORM.smartgrid(db.grades,onupdate=auth.archive)
+    return locals()
+
+@auth.requires_login()
+def classes_manage():
+    form = SQLFORM.smartgrid(db.courses,onupdate=auth.archive)
+    return locals()
+
+@auth.requires_login()
+def create_grade():
+    form = crud.create(db.grade)
+    return dict(form = form)

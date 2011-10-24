@@ -1,0 +1,29 @@
+### we prepend t_ to tablenames and f_ to fieldnames for disambiguity
+
+########################################
+db.define_table('courses',
+    Field('course_name', type='string',
+          label=T('Course Name')),
+    auth.signature,
+    format='%(course_name)s',
+    migrate=settings.migrate)
+
+########################################
+db.define_table('grades',
+    Field('name', 'string', default=auth.user_id,
+          label=T('Name')),
+    Field('grade', type='double',
+          label=T('Grade')),
+    Field('course', db.courses,
+          label=T('Course')),          
+    Field('class_date', type='date',
+          label=T('Class Date')),
+    Field('submitted_date', type='date', default=request.now,
+          label=T('Submitted Date')),
+    auth.signature,
+    format='%(f_name)s',
+    migrate=settings.migrate)
+
+db.define_table('grades_archive',db.grades,Field('current_record','reference grades',readable=False,writable=False))
+
+db.define_table('courses_archive',db.courses,Field('current_record','reference courses',readable=False,writable=False))

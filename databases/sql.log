@@ -1,0 +1,163 @@
+timestamp: 2011-10-05T20:58:44.379073
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username CHAR(512),
+    first_name CHAR(512),
+    last_name CHAR(512),
+    email CHAR(512),
+    password CHAR(512),
+    created_on TIMESTAMP,
+    modified_on TIMESTAMP,
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2011-10-05T20:58:44.391690
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-10-05T20:58:44.398576
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-05T20:58:44.408189
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2011-10-05T20:58:44.415465
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-10-05T20:58:44.425287
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    url CHAR(512),
+    uuid CHAR(512)
+);
+success!
+timestamp: 2011-10-05T20:58:44.433212
+CREATE TABLE t_grades(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_name CHAR(512),
+    f_grade CHAR(512),
+    f_class_date CHAR(512),
+    f_submitted_date CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-05T20:58:44.441065
+CREATE TABLE t_grades_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_name CHAR(512),
+    f_grade CHAR(512),
+    f_class_date CHAR(512),
+    f_submitted_date CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_grades(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-05T20:58:44.451674
+CREATE TABLE t_classes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_class_name CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-05T20:58:44.459907
+CREATE TABLE t_classes_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_class_name CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_classes(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-05T21:17:40.166303
+CREATE TABLE courses(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    course_name CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-05T22:21:49.218089
+CREATE TABLE grades(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    grade DOUBLE,
+    course INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+    class_date DATE,
+    submitted_date DATE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-05T22:21:49.234608
+CREATE TABLE grades_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    grade DOUBLE,
+    course INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+    class_date DATE,
+    submitted_date DATE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES grades(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-05T22:21:49.246100
+CREATE TABLE courses_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    course_name CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES courses(id) ON DELETE CASCADE
+);
+success!
