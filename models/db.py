@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from gluon import *
+request,session,response,T,cache=current.request,current.session,current.response,current.T,current.cache
+
 #########################################################################
 ## This scaffolding model makes your app work on Google App Engine too
 ## File is released under public domain and you can use without limitations

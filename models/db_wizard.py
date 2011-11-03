@@ -1,4 +1,6 @@
-### we prepend t_ to tablenames and f_ to fieldnames for disambiguity
+#for PyDev recognition
+from gluon import *
+request,session,response,T,cache=current.request,current.session,current.response,current.T,current.cache
 
 ########################################
 db.define_table('courses',
@@ -10,19 +12,12 @@ db.define_table('courses',
 
 ########################################
 db.define_table('grades',
-    Field('name', db.auth_user, default=auth.user_id,
-          label=T('Name')),
-    Field('grade', type='double',
-          label=T('Grade')),
-    Field('course', db.courses,
-          label=T('Course')),          
-    Field('class_date', type='date',
-          label=T('Class Date')),
-    Field('submitted_date', type='date', default=request.now,
-          label=T('Submitted Date')),
-    auth.signature,
-    format='%(f_name)s',
-    migrate=settings.migrate)
+    Field('name', db.auth_user, default=auth.user_id),
+    Field('grade', type='double'),
+    Field('course', db.courses),          
+    Field('class_date', type='date'),
+    Field('submitted_date', type='date', default=request.now),
+    format='%(f_name)s')
 
 db.define_table('grades_archive',db.grades,Field('current_record','reference grades',readable=False,writable=False))
 

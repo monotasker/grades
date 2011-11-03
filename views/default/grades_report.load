@@ -1,0 +1,18 @@
+{{for c in grades:}}
+<h3>{{=student}}</h3>
+<ul>
+<li>{{=c}}</li>
+
+    <ul>
+    {{for k,w in grades[c].items():}}
+    <li>
+        {{=k}}:
+        {{for s in w:}}
+        {{=s}};
+        {{pass}}
+    </li>
+    {{pass}}
+    </ul>
+
+</ul>
+{{pass}}

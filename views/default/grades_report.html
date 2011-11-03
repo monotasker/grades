@@ -1,0 +1,18 @@
+{{extend 'layout.html'}}
+
+<h2>Grade Reports</h2>
+
+<section id="listpane">
+    <ul>
+    {{for num,name in students.items():}}
+        {{=LI(A(name, _href=URL('grades_report.load', args=num), cid="viewpane"))}}
+    {{pass}}
+    </ul>
+</section>
+
+<section id="viewpane">
+{{=A('next student', _href=URL('grade_report', ))}}
+
+{{=LOAD('default', 'grades_report.load', ajax=True)}}
+
+</section>

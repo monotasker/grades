@@ -153,6 +153,11 @@
       {{end}}
 
     </div><!-- footer -->           
+
+    {{if session.debug:}}
+    {{=DIV(session.debug)}}
+    {{pass}}
+    
       </div><!-- wrapper -->
     </div><!-- container -->        
     
