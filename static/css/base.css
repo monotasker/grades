@@ -1,82 +1,11 @@
 @charset "UTF-8";
 
 /* 
-Quick tips
-==========
-
-Add a background header, append to this file:
-
-    #header {background: url('../images/logo.png') no-repeat; height:100px}
-
-Change theme color, append to this file
-
-    a { color: green }
-    body { background-color: yellow }
-
-Change page width, append to this file
-
-    #wrapper {width: 900px;}
-
-What's in this file?
-====================
-
-This file is contains the following sections:
-
-- The new revision contains:
-- Html5, good practice and normalization support.
-- Diferent hacks.
-- The normalization and some tags come from
-  diferent sites so i keep the credits and comments.
-  but the base of support html5 come from:
-  http://html5boilerplate.com/
-
-- ez.css (http://www.ez-css.org/layouts)
-- reset common tags
-- choose default fonts
-- choose link style
-- add bottom line to table rows
-- labels bold and occasionally centered
-- make all input fields the same size
-- add proper separation between h1-h6 and text
-- always indent the first line and add space below paragraphs
-- bullets and numbers style and indent
-- form and table padding
-- code blocks
-- left and right padding to quoted text
-- page layout alignment, width and padding (change this for spaces)
-- column widths (change this to use left_sidebar and right_sidebar)
-- backrgound images and colors (change this for colors)
-- web2py specific (.flash, .error)
-
-Notice
-======
-- even if you use a different layout/css you may need classes .flash and .error
-- this is all color neutral except for links #275b90
-
-License
-=======
-
-This file is released under BSD and MIT
-
-Version
-=======
-
-Based on Revision: 20101102 by Martin Mulone, modified on 20110822
-
-Credits
-=======
-
-credit is left where credit is due.
-additionally, much inspiration was taken from these projects:
-yui.yahooapis.com/2.8.1/build/base/base.css
-camendesign.com/design/
-praegnanz.de/weblog/htmlcssjs-kickstart
+based on web2py base.css 20110822 by Martin Mulone (released under BSD and MIT
 */
 
 /*
-html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
-v1.4 2009-07-27 | Authors: Eric Meyer & Richard Clark
-html5doctor.com/html-5-reset-stylesheet/
+html5doctor.com Reset Stylesheet (v1.4 2009-07-27 | Authors: Eric Meyer & Richard Clark
 */
 
 html, body, div, span, object, iframe,
@@ -105,13 +34,6 @@ footer, header, hgroup, menu, nav, section {
     display:block;
 }
 
-nav ul { list-style:none; }
-
-blockquote, q { quotes:none; }
-
-blockquote:before, blockquote:after,
-q:before, q:after { content:''; content:none; }
-
 a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
 a:hover { text-decoration: underline }
 
@@ -129,106 +51,48 @@ table { border-collapse:collapse; border-spacing:0; }
 hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
 
 input, select { vertical-align:middle; }
-/* END RESET CSS */
-
-
-/*
-fonts.css from the YUI Library: developer.yahoo.com/yui/
-    Please refer to developer.yahoo.com/yui/fonts/ for font sizing percentages
-
-There are three custom edits:
-    * remove arial, helvetica from explicit font stack
-    * make the line-height relative and unit-less
-    * remove the pre, code styles
-*/
-body { font:13px/1.231 sans-serif; *font-size:small; } /* hack retained to preserve specificity */
-
-/*table { font-size:inherit; font:100%; }*/
-
-select, input, textarea, button { font:99% sans-serif; }
-textarea { width: 600px; }
-
-/* normalize monospace sizing
-    * en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome
-    */
-pre, code, kbd, samp { font-family: monospace, sans-serif; }
-
-/*
-    * minimal base styles
-    */
-
-/* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
-body, select, input, textarea { color:#444; }
-
-/* Headers (h1,h2,etc) have no default font-size or margin,
-    you'll want to define those yourself. */
-
-/* www.aestheticallyloyal.com/public/optimize-legibility/ */
-h1,h2,h3,h4,h5,h6 { font-weight: bold; }
 
 /* always force a scrollbar in non-IE */
 html { overflow-y: scroll; }
 
-/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
-a:hover, a:active { outline: none; }
+/****************************************************************
+FONTS
+based on fonts.css from the YUI Library: developer.yahoo.com/yui/
+****************************************************************/
+body { font:14px sans-serif; 
+	*font-size:small; 
+	line-height:24px; 
+	color:#444;
+} /* hack retained to preserve specificity */
 
-a { color: #275b90 }
-
-ul, ol { margin-left: 1.8em; }
-ol { list-style-type: decimal; }
-
-/* Remove margins for navigation lists */
-nav ul, nav li { margin: 0; }
-
-small { font-size:85%; }
-strong, th { font-weight: bold; }
-
-td, td img { vertical-align: top;}
-td { text-align: left }
-
-sub { vertical-align: sub; font-size: smaller; }
-sup { vertical-align: super; font-size: smaller; }
-
-pre {
-    padding: 15px;
+select, input, textarea, button { 
+	font:99% sans-serif; 
 }
 
+/* normalize monospace sizing en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
+select, input, textarea { color:#444; }
+small { font-size:11px; line-height:24px}
+
+/* standard formatting of semantic elements */
+sub { vertical-align: sub; font-size: smaller; }
+sup { vertical-align: super; font-size: smaller; }
+strong, th { font-weight: bold; }
+b { font-weight: bold; }
+label { white-space: nowrap; font-weight:bold; }
+legend { font-weight: bold; }
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
 pre, code {
     /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
     white-space: pre; /* CSS2 */
     white-space: pre-wrap; /* CSS 2.1 */
     white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
     word-wrap: break-word; /* IE */
+    font-family: Andale Mono, monospace;
+    font-size: 0.9em;
 }
 
-textarea { overflow: auto; } /* thnx ivannikolic! www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
-
-.ie6 legend, .ie7 legend { margin-left: -7px; } /* thnx ivannikolic! */
-
-/* align checkboxes, radios, text inputs with their label
-    by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
-input[type="radio"] { vertical-align: text-bottom; }
-input[type="checkbox"] { vertical-align: bottom; }
-.ie7 input[type="checkbox"] { vertical-align: baseline; }
-.ie6 input { vertical-align: text-bottom; }
-
-/* hand cursor on clickable input elements */
-label, input[type=button], input[type=submit], button { cursor: pointer; }
-
-/* webkit browsers add a 2px margin outside the chrome of form elements */
-button, input, select, textarea { margin: 0; }
-
-/* colors for form validity */
-input:valid, textarea:valid   {  }
-input:invalid, textarea:invalid {
-    border-radius: 1px;
-    -moz-box-shadow: 0px 0px 5px red;
-    -webkit-box-shadow: 0px 0px 5px red;
-    box-shadow: 0px 0px 5px red;
-}
-.no-boxshadow input:invalid,
-.no-boxshadow textarea:invalid { background-color: #f0dddd; }
-
+/* non-semantic text helper classes */
+.right { text-align:right; }
 
 /* These selection declarations have to be separate.
     No text-shadow: twitter.com/miketaylr/status/12228805301
@@ -236,49 +100,233 @@ input:invalid, textarea:invalid {
 ::-moz-selection{ background: #555; color:#fff; text-shadow: none; }
 ::selection { background:#555; color:#fff; text-shadow: none; }
 
-/*  j.mp/webkit-tap-highlight-color */
-a:link { -webkit-tap-highlight-color: #555; }
-a { text-decoration: none}
-a:hover {text-decoration: underline}
+/****************************************************************
+HEADINGS
+****************************************************************/
 
-/* make buttons play nice in IE:
-    www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
-button {  width: auto; overflow: visible; }
+h1 { font-weight: bold; font-size:28px; line-height:36px}
+h2 { font-weight: bold; font-size:18px; line-height:36px}
+h3 { font-weight: bold; font-size:14px; line-height:24px}
+h4 { font-weight: bold; font-size:14px; line-height:24px}
+h5 { font-weight: bold; font-size:14px; line-height:24px}
+
+
+/****************************************************************
+LINKS
+*****************************************************************/
+
+a { color: #666; text-decoration: none}
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active { outline: none; text-decoration:none; cursor: pointer;}
+/*  j.mp/webkit-tap-highlight-color */
+a:link { -webkit-tap-highlight-color: #f5f5f5; }
+
+/* specific links */
+footer a {
+	float:right;
+}
+
+nav a {
+    text-shadow:0 2px 4px rgba(0,0,0,0.4);
+}
+
+.close_link {
+	color:#aaa;
+	font-weight:bold;
+}
+
+/*SECTIONS*/
+
+section {}
+
+/****************************************************************
+PARAGRAPHS
+*****************************************************************/
+
+p { 
+	text-indent:0px; 
+	margin-bottom: 14px; 
+}
+
+/****************************************************************
+CODE BLOCKS
+****************************************************************/
+
+pre { padding: 28px; }
+code { padding: 3.5px 7px; }
+
+/****************************************************************
+BLOCK QUOTES
+****************************************************************/
+
+blockquote, q { quotes:none; }
+blockquote {
+    background: #cccccc;
+    border-left: 28px transparent;
+    border-right: 28px transparent;
+    margin-bottom: 14px;
+    /*padding: 7px;*/
+}
+blockquote:before, blockquote:after,
+q:before, q:after { content:''; content:none; }
+
+/****************************************************************
+LISTS
+****************************************************************/
+
+ul, ol { margin-left: 28px; }
+ol { list-style-type: decimal; }
+nav ul { 
+	margin: 0; 
+	list-style:none; 
+}
+
+#menu {
+	width:100%;
+	background-color:#888;
+	margin:0;
+}
+#menu li { 
+	display:block; 
+	margin: 0; 
+	float:left;
+	padding:12px;
+	background-color:#888;
+}
+
+#links li {
+	margin:12px;
+	display:block; 
+    position:relative;
+	float:left;
+	height: 100px;
+    line-height:100px;
+	width:100px;
+	border-radius:2px;
+	text-align:center;
+    background-image:-moz-linear-gradient(top, rgba(270,270,270,0.6) 0%, rgba(270,270,270,0.1) 2%, rgba(0,0,0,0.2) 98%, rgba(0,0,0,0.4) 100%), 
+    -moz-linear-gradient(left, rgba(270,270,270,0.2) 0%, rgba(270,270,270,0) 2%, rgba(270,270,270,0) 98%, rgba(270,270,270,0.2) 100%),
+    -moz-radial-gradient(50% 16% 360deg,circle farthest-side, rgba(270,270,270,0.3), rgba(270,270,270,0) 120%);
+    background-image:-webkit-linear-gradient(top, rgba(270,270,270,0.2) 0%, rgba(270,270,270,0) 10%, rgba(0,0,0,0.1) 90%, rgba(0,0,0,0.4) 100%);
+    background-image:-o-linear-gradient(top, rgba(270,270,270,0.2) 0%, rgba(270,270,270,0) 10%, rgba(0,0,0,0.1) 90%, rgba(0,0,0,0.4) 100%);
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+    vertical-align: middle;
+}
+
+/****************************************************************
+TABLES
+****************************************************************/
+table { padding: 5px 10px 5px 10px; }
+td, td img { vertical-align: top; }
+td { text-align: left; }
+th, td { padding: 0.1em 0.5em 0.1em 0.5em;} /* add bottom line to table rows */
+th { font-weight: bold; }
+thead th {
+    text-align: left;
+    border-bottom: 1px solid #444;
+    background-color: #e1e1e1;
+}
+
+/****************************************************************
+FORMS
+****************************************************************/
+
+form { padding: 6px 12px; }
+textarea { overflow: auto; width: 80%; } /* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+.ie6 legend, .ie7 legend { margin-left: -7px; }
+
+/* align inputs with label: tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] { vertical-align: text-bottom; } 
+input[type="checkbox"] { vertical-align: bottom; } 
+.ie7 input[type="checkbox"] { vertical-align: baseline; } 
+.ie6 input { vertical-align: text-bottom; }
+
+/* hand cursor on clickable inputs */
+label, input[type=button], input[type=submit], button { cursor: pointer; }
+
+/* fix webkit 2px margin */ 
+button, input, select, textarea { margin: 0; } 
+
+/* colors for form validity */
+input:valid, textarea:valid {  }
+input:invalid, textarea:invalid {
+    border-radius: 1px;
+    -moz-box-shadow: 0px 0px 5px red;
+    -webkit-box-shadow: 0px 0px 5px red;
+    box-shadow: 0px 0px 5px red;
+} 
+.no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
+
+/* IE fix: www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button { width: auto; overflow: visible; } 
+
+/* dimensions */
+input[type=text], input[type=password], textarea, select {
+    margin: 2px 15px 2px 5px;
+    width: 280px;
+    background: #fff;
+    border: 1px solid #dedede;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+input[type=text], input[type=password] { height: 24px; }
+select[multiple=multiple] { height: 120px; }
+input[type=submit], input[type=button], button {
+    margin: 0px;
+    /*width: 85px;*/
+    height: 24px;
+    background: #eaeaea;
+    border: 1px solid #dedede;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+fieldset { border: 1px solid #dedede; padding: 6px; }
+
+input:focus, textarea:focus { background: #fafafa; }
+
+/****************************************************************
+IMAGES
+****************************************************************/
 
 /* bicubic resizing for non-native sized IMG:
     code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
 .ie7 img { -ms-interpolation-mode: bicubic; }
 
-/*
-    * Non-semantic helper classes
-    */
-
 /* for image replacement */
 .ir { display:block; text-indent:-999em; overflow:hidden; background-repeat: no-repeat; }
 
-/* Hide for both screenreaders and browsers
-    css-discuss.incutio.com/wiki/Screenreader_Visibility */
-.hidden { display:none; }
+#logo {
+    width: 68px;
+    height: 62px;
+    background: url(../images/logo.png);
+}
 
-/* Hide only visually, but have it available for screenreaders
-    www.webaim.org/techniques/css/invisiblecontent/
-    Solution from: j.mp/visuallyhidden - Thanks Jonathan Neal! */
+#links .link_icon img {
+    line-height:100px;
+    vertical-align:middle;
+}
+/****************************************************************
+NON-SEMANTIC HELPER CLASSES
+****************************************************************/
+
+/* Hide for both screenreaders and browsers: css-discuss.incutio.com/wiki/Screenreader_Visibility */
+.hidden { display:none; }
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible { visibility: hidden; }
+/* Hide visually (not from screenreaders): www.webaim.org/techniques/css/invisiblecontent/ and j.mp/visuallyhidden */
 .visuallyhidden { position:absolute !important;
     clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
     clip: rect(1px, 1px, 1px, 1px); }
-
-/* Hide visually and from screenreaders, but maintain layout */
-.invisible { visibility: hidden; }
 
 /* >> The Magnificent CLEARFIX: Updated to prevent margin-collapsing on child elements << j.mp/bestclearfix */
 .clearfix:before, .clearfix:after {
     content: "\0020"; display: block; height: 0; visibility: hidden;
 }
-
 .clearfix:after { clear: both; }
 /* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
 .clearfix { zoom: 1; }
-
 
 /*********** layout info (ez.css) ***********/
 /* 2009 -2010 (c) | ez-css.org
@@ -286,143 +334,134 @@ button {  width: auto; overflow: visible; }
     */
 .ez-wr:after,.ez-box:after{content:".";display:block;height:0;clear:both;visibility:hidden}.ez-wr,.ez-box,.ez-last{display:inline-block;min-height:0}/* \*/ * html .ez-wr,* html .ez-box,* html .ez-last{height:1%}.ez-wr,.ez-box,.ez-last{display:block}/* */.ez-oh{overflow:hidden}* html .ez-oh{overflow:visible}.ez-oa{overflow:auto}.ez-dt{display:table}.ez-it{display:inline-table}.ez-tc{display:table-cell}.ez-ib{display:inline-block}.ez-fl{float:left}* html .ez-fl{margin-right:-3px}.ez-fr{float:right}* html .ez-fr{margin-left:-3px}.ez-25{width:25%}.ez-33{width:33.33%}.ez-50{width:50%}.ez-66{width:66.66%}.ez-75{width:75%}.ez-negmr{margin-right:-1px}* html .ez-negmr{margin-right:-4px}.ez-negmx{margin-right:-1px}.ez-negml{margin-left:-1px}* html .ez-negml{margin-left:-4px}
 
+/** colours **/
 
-/*********** add bottom line to table rows ***********/
-th, td { padding: 0.1em 0.5em 0.1em 0.5em;}
 
-/*********** labels bold and occasionally centered ***********/
-label {
-    white-space: nowrap;
-}
-label, b, th {
-    font-weight: bold;
-}
-thead th {
-    text-align: left;
-    border-bottom: 1px solid #444;
-    background-color: #e1e1e1;
-}
-.right {
-    text-align:right;
+.red{
+    background-color:#B10808    
 }
 
-/*********** forms and table padding ***********/
-form, table {
-    padding: 5px 10px 5px 10px;
+.wine{
+    background-color:#701;
 }
 
-/*********** code blocks ***********/
-code {
-    padding: 3px 5px;
-    font-family: Andale Mono, monospace;
-    font-size: 0.9em;
+.white{
+    background-color:#E7EEF5;   
+    background-image:-moz-linear-gradient(top, rgba(270,270,270,0.6) 0%, rgba(270,270,270,0.1) 5%, rgba(0,0,0,0.1) 95%, rgba(0,0,0,0.6) 100%), 
+        -moz-linear-gradient(left, rgba(0,0,0,0.2) 0%, rgba(270,270,270,0) 5%, rgba(270,270,270,0) 95%, rgba(0,0,0,0.2) 100%),
+        -moz-radial-gradient(50% 16% 360deg,circle farthest-side, rgba(270,270,270,0.7), rgba(270,270,270,0) 140%);
+}
+.blue{
+    background-color:#000631;    
+}
+.green{
+    background-color:#0D3100;
+}
+.light-green{
+    background-color:#5BA917;    
+}
+.light-blue{
+    background-color:#164CA8;
+}
+.pale-blue{
+    background-color:#7E9AFF;
+}
+.black{
+    background-color:#000;
+}
+.yellow{
+    background-color:yellow;
+}
+.purple{
+    background-color:#58007D;
+}
+.orange{
+    background-color:#FF9700;
 }
 
-/*********** left and right padding to quoted text ***********/
-blockquote {
-    background: #cccccc;
-    border-left: 30px transparent;
-    border-right: 30px transparent;
-    /*padding: 5px;*/
+/****************************************************************
+PAGE LAYOUT
+****************************************************************/
+
+/* BODY */
+body {
+	background: #ccc no-repeat;
+	position:relative;
+    background-image:-moz-radial-gradient(50% 2% 360deg,circle farthest-side, rgba(270,270,270,0.6), rgba(270,270,270,0) 70%);
+	width:100%;
+	height:100%;
 }
 
-input[type=text], input[type=password], textarea, select {
-    margin: 2px 15px 2px 5px;
-    width: 280px;
-    background: #fff;
-    color: #555;
-    border: 1px solid #dedede;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    font-size: 12px;
+/* HEADER */
+header { 
+	display:block; 
+	margin:0 auto;
+	width:600px;
 }
 
-input[type=text], input[type=password] {
-    height: 16px;
-}
-
-select[multiple=multiple] {
-    height: 90px;
-}
-
-input[type=submit], input[type=button], button {
-    margin: 0px;
-    /*width: 85px;*/
-    height: 22px;
-    background: #eaeaea;
-    color: #555;
-    border: 1px solid #dedede;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-}
-
-fieldset { border: 1px solid #dedede; padding: 6px; }
-legend { font-weight: bold; }
-
-input:focus, textarea:focus { background: #fafafa; }
-
-p { text-indent:0px;}
-
-p, blockquote {
-    margin-bottom: 10px;
-}
-
-h1,h2,h3,h4,h5,h6 { padding-top: 0.5em; padding-bottom: 0.33em; }
-h1 {font-size: 2.0em;}
-h2 {font-size: 1.8em;}
-h3 {font-size: 1.4em;}
-h4 {font-size: 1.2em;}
-h5 {font-size: 1.0em;}
-h6 {font-size: 0.8em;}
-
-/*********** page layout alignment, width and padding ***********/
-/*body {background-color: #000;}*/
-#header h1 {  padding: 1.33em 0.66em 0.66em 0.66em; }
-#container, #header, #page, #content, #statusbar,
-#footer, #wrapper { display:block; line-height: 170%}
-#wrapper {width: 900px;}
-#container {
-    margin: 0 auto;
-    padding: 0;
-}
-#page { padding: 20px 10px 30px 10px; }
-#wrapper {margin: 0 auto;}
-#wrapper {background-color: #fff; padding: 0}
-#statusbar { margin: 0 }
-#footer {
-    padding: 5px;
-}
-#statusbar, #footer {
-    background: #eaeaea;
-    border-top: 1px #aaa solid;
-}
-#logo {
-    width: 68px;
-    height: 62px;
-    background: url(../images/logo.png);
-}
-#appname {
-    color: #cccccc;
-}
-
-#right_sidebar { width: 160px; float:right; display: none; }
-#left_sidebar { width: 160px; float:left; display: none; }
-#content { float: left; /*width: 740px;*//*width: 63%;*/ /*width: 640px; float:left;*/ } /* uncomment this if you are going to use sidebars */
 
 .auth_navbar {
     top: 0px;
-    float: right;
-    width: 100%;
-    background-color: white;
-    opacity: 0.80; 
+	display:block;
+    float: right; 
     text-align: right;
-    color: black;
-    line-height: 1.4em;
 }
 
-/*********** web2py specific ***********/
+#statusbar {
+}
+
+/* PAGE */
+#page { 
+	display:block;  
+	margin:0 auto;	
+	width:600px;
+}
+
+/* NAV */
+nav {
+	margin:0; 
+	display:block; 
+	padding:14px; 
+}
+
+/* FOOTER */
+footer {
+	display:block; 
+	padding:14px;
+	margin:0 auto;
+	width:600px;  
+	color:#ccc;  
+}
+
+/* RIGHT SIDEBAR */
+#right_sidebar { width: 160px; float:right; display: none; }
+
+/* LEFT SIDEBAR */
+#left_sidebar { width: 160px; float:left; display: none; }
+
+/* MODAL FRAME */
+
+#modal_frame {
+	display:none;
+	position:absolute;
+	top:15%;
+	left:50%;
+	padding:24px;
+	width:400px;
+	min-height:260px;
+	background-color:#fff;
+	border-radius:2px;
+	box-shadow:0 2px 12px rgba(0,0,0,0.7);
+	z-index:1;
+	margin-left:-200px;
+}
+
+#modal_content{}
+
+/********************************************* 
+web2py specific 
+**********************************************/
+
 div.flash {
     font-weight: bold;
     display: none;

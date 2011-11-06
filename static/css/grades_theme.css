@@ -1,0 +1,33 @@
+/* ubiquitous styles */
+
+/* header elements */
+
+h1#appname {
+    color: #fff;
+}
+
+header {
+	background-image:-moz-linear-gradient(#84C63C, #489615);	
+}
+
+/* body elements */
+
+body {
+	background-image:-moz-radial-gradient(50% 2% 360deg,circle farthest-side, rgba(270,270,270,0.6), rgba(270,270,270,0) 70%);
+}
+
+/* page elements */
+
+#listpane {
+	
+}
+
+#viewpane {
+	
+}
+
+/* footer elements */
+
+footer {
+	
+}

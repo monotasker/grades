@@ -16,3 +16,9 @@
 
 </ul>
 {{pass}}
+
+{{if request.args[0] > 0:}}
+{{=A('previous student', _href=URL('grades_report.load', args=(int(request.args[0])-1)), _class="prevnav", cid='viewpane')}}
+{{pass}}
+
+{{=A('next student', _href=URL('grades_report.load', args=(int(request.args[0])+1)), _class="nextnav", cid='viewpane')}}
