@@ -55,6 +55,11 @@ input, select { vertical-align:middle; }
 /* always force a scrollbar in non-IE */
 html { overflow-y: scroll; }
 
+/* right-align form labels */
+table tr td:first-child {
+    text-align: right;
+}
+
 /****************************************************************
 FONTS
 based on fonts.css from the YUI Library: developer.yahoo.com/yui/

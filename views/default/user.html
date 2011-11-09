@@ -10,6 +10,17 @@
 <br/><a href="{{=URL(r=request,args='request_reset_password')}}">lost password</a>
 {{pass}}
 {{pass}}
+
+{{if request.args(0) == 'profile':}}
+    <h3>How am I doing so far?</h3>
+    <table>
+    {{for l in courselist:}}
+        {{for k,v in l.items():}}
+            {{=TR(TD(k), TD(v))}}
+        {{pass}}
+    {{pass}}
+    </table>
+{{pass}}
 </div>
 
 <script language="javascript">

@@ -1,14 +1,19 @@
 #for PyDev recognition
-from gluon import *
-request,session,response,T,cache=current.request,current.session,current.response,current.T,current.cache
-
+if 0:
+    from gluon import current
+    from gluon.tools import Auth
+    from gluon.dal import DAL, Field
+    db = DAL()
+    auth = Auth()
+    request = current.request
+    T = current.t
+    
 ########################################
 db.define_table('courses',
-    Field('course_name', type='string',
-          label=T('Course Name')),
-    auth.signature,
-    format='%(course_name)s',
-    migrate=settings.migrate)
+    Field('course_name', type='string'),
+    Field('max_score', type='double', default=4.0),
+    Field('curve', type='double', default=0),
+    format='%(course_name)s')
 
 ########################################
 db.define_table('grades',

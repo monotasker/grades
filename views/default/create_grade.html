@@ -1,4 +1,6 @@
 {{extend 'layout.html'}}
-<h1>Enter a grade for one of your group members</h1>
+<h1>Hello {{=fn}}</h1>
+<p>Please enter a grade below for one of your peers in {{=cname}}</p>
 {{=form}}
+<span class='cancel_message'>{{=cancel_button}} and return to main page</span>
 {{#=BEAUTIFY(response._vars)}}

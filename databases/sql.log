@@ -161,3 +161,11 @@ CREATE TABLE courses_archive(
     current_record INTEGER REFERENCES courses(id) ON DELETE CASCADE
 );
 success!
+timestamp: 2011-11-09T12:14:18.273452
+ALTER TABLE courses ADD max_score DOUBLE;
+timestamp: 2011-11-09T12:14:18.394092
+ALTER TABLE courses_archive ADD max_score DOUBLE;
+timestamp: 2011-11-09T13:36:02.063358
+ALTER TABLE courses ADD curve DOUBLE;
+timestamp: 2011-11-09T13:36:02.159489
+ALTER TABLE courses_archive ADD curve DOUBLE;
