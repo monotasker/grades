@@ -137,4 +137,4 @@ def grades_detail():
         except:
             print ''
     
-    return dict(courselist = courselist, student=student)                
+    return dict(courselist = courselist, student=student)
