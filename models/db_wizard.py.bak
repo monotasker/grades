@@ -10,7 +10,7 @@ db.define_table('courses',
 
 ########################################
 db.define_table('grades',
-    Field('name', 'string', default=auth.user_id,
+    Field('name', db.auth_user, default=auth.user_id,
           label=T('Name')),
     Field('grade', type='double',
           label=T('Grade')),

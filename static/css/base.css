@@ -65,13 +65,13 @@ FONTS
 based on fonts.css from the YUI Library: developer.yahoo.com/yui/
 ****************************************************************/
 body { font:14px sans-serif; 
-	*font-size:small; 
-	line-height:24px; 
-	color:#444;
+    *font-size:small; 
+    line-height:24px; 
+    color:#444;
 } /* hack retained to preserve specificity */
 
 select, input, textarea, button { 
-	font:99% sans-serif; 
+    font:99% sans-serif; 
 }
 
 /* normalize monospace sizing en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
@@ -128,7 +128,7 @@ a:link { -webkit-tap-highlight-color: #f5f5f5; }
 
 /* specific links */
 footer a {
-	float:right;
+    float:right;
 }
 
 nav a {
@@ -136,8 +136,8 @@ nav a {
 }
 
 .close_link {
-	color:#aaa;
-	font-weight:bold;
+    color:#aaa;
+    font-weight:bold;
 }
 
 /*SECTIONS*/
@@ -149,8 +149,8 @@ PARAGRAPHS
 *****************************************************************/
 
 p { 
-	text-indent:0px; 
-	margin-bottom: 14px; 
+    text-indent:0px; 
+    margin-bottom: 14px; 
 }
 
 /****************************************************************
@@ -182,33 +182,33 @@ LISTS
 ul, ol { margin-left: 28px; }
 ol { list-style-type: decimal; }
 nav ul { 
-	margin: 0; 
-	list-style:none; 
+    margin: 0; 
+    list-style:none; 
 }
 
 #menu {
-	width:100%;
-	background-color:#888;
-	margin:0;
+    width:100%;
+    background-color:#888;
+    margin:0;
 }
 #menu li { 
-	display:block; 
-	margin: 0; 
-	float:left;
-	padding:12px;
-	background-color:#888;
+    display:block; 
+    margin: 0; 
+    float:left;
+    padding:12px;
+    background-color:#888;
 }
 
 #links li {
-	margin:12px;
-	display:block; 
+    margin:12px;
+    display:block; 
     position:relative;
-	float:left;
-	height: 100px;
+    float:left;
+    height: 100px;
     line-height:100px;
-	width:100px;
-	border-radius:2px;
-	text-align:center;
+    width:100px;
+    border-radius:2px;
+    text-align:center;
     background-image:-moz-linear-gradient(top, rgba(270,270,270,0.6) 0%, rgba(270,270,270,0.1) 2%, rgba(0,0,0,0.2) 98%, rgba(0,0,0,0.4) 100%), 
     -moz-linear-gradient(left, rgba(270,270,270,0.2) 0%, rgba(270,270,270,0) 2%, rgba(270,270,270,0) 98%, rgba(270,270,270,0.2) 100%),
     -moz-radial-gradient(50% 16% 360deg,circle farthest-side, rgba(270,270,270,0.3), rgba(270,270,270,0) 120%);
@@ -390,24 +390,24 @@ PAGE LAYOUT
 
 /* BODY */
 body {
-	background: #ccc no-repeat;
-	position:relative;
+    background: #ccc no-repeat;
+    position:relative;
     background-image:-moz-radial-gradient(50% 2% 360deg,circle farthest-side, rgba(270,270,270,0.6), rgba(270,270,270,0) 70%);
-	width:100%;
-	height:100%;
+    width:100%;
+    height:100%;
 }
 
 /* HEADER */
 header { 
-	display:block; 
-	margin:0 auto;
-	width:600px;
+    display:block; 
+    margin:0 auto;
+    width:600px;
 }
 
 
 .auth_navbar {
     top: 0px;
-	display:block;
+    display:block;
     float: right; 
     text-align: right;
 }
@@ -417,25 +417,25 @@ header {
 
 /* PAGE */
 #page { 
-	display:block;  
-	margin:0 auto;	
-	width:600px;
+    display:block;  
+    margin:0 auto;  
+    width:600px;
 }
 
 /* NAV */
 nav {
-	margin:0; 
-	display:block; 
-	padding:14px; 
+    margin:0; 
+    display:block; 
+    padding:14px; 
 }
 
 /* FOOTER */
 footer {
-	display:block; 
-	padding:14px;
-	margin:0 auto;
-	width:600px;  
-	color:#ccc;  
+    display:block; 
+    padding:14px;
+    margin:0 auto;
+    width:600px;  
+    color:#ccc;  
 }
 
 /* RIGHT SIDEBAR */
@@ -447,18 +447,18 @@ footer {
 /* MODAL FRAME */
 
 #modal_frame {
-	display:none;
-	position:absolute;
-	top:15%;
-	left:50%;
-	padding:24px;
-	width:400px;
-	min-height:260px;
-	background-color:#fff;
-	border-radius:2px;
-	box-shadow:0 2px 12px rgba(0,0,0,0.7);
-	z-index:1;
-	margin-left:-200px;
+    display:none;
+    position:absolute;
+    top:15%;
+    left:50%;
+    padding:24px;
+    width:400px;
+    min-height:260px;
+    background-color:#fff;
+    border-radius:2px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.7);
+    z-index:1;
+    margin-left:-200px;
 }
 
 #modal_content{}

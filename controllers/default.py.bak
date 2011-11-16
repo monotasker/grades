@@ -23,5 +23,5 @@ def classes_manage():
 
 @auth.requires_login()
 def create_grade():
-    form = crud.create(db.grade)
+    form = crud.create(db.grades)
     return dict(form = form)
