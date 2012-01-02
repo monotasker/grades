@@ -51,11 +51,10 @@ def error():
 @auth.requires_membership(role='administrators')
 def grades_manage():
     #get course id passed as first argument of url
-    this_course = request.args[:1]
-    print this_course
+    this_course = request.args[0]
     coursename = db(db.courses.id == this_course).select().first().course_name
     #create smartgrid to display all class grades
-    form = SQLFORM.smartgrid(db.grades, constraints={'grades':db.grades.course == this_course}, onupdate=auth.archive, paginate=300, args=[row.id, this_course])
+    form = SQLFORM.smartgrid(db.grades, fields=[db.grades.name, db.grades.grade, db.grades.class_date], constraints={'grades':db.grades.course == this_course}, onupdate=auth.archive, paginate=300, args=[this_course])
     return locals()
 
 @auth.requires_membership(role='administrators')
