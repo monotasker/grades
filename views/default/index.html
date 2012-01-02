@@ -3,5 +3,12 @@
 <h1>Welcome</h1><p>Please register on this site, log in, and then click on a link below to submit peer grades for a course in which you are enrolled.</p>
 
 {{for course in courses:}}
-{{=LI(A(course.course_name, _href=URL('create_grade', args=[course.id])))}}
+{{=LI(
+    A(course.course_name, _href=URL('create_grade', args=[course.id])),
+    '  (', 
+    A('manage', _href=URL('grades_manage', args=[course.id])),
+    ' | ',
+    A('instructor\'s report', _href=URL('grades_report', args=[course.id])),
+    ')'
+)}}
 {{pass}}
