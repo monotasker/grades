@@ -1,0 +1,17 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+T	db_wizard.py	/^    T = current.t$/;"	v
+auth	db.py	/^auth = Auth(db, hmac_key=Auth.get_or_create_key()) $/;"	v
+auth	db_wizard.py	/^    auth = Auth()$/;"	v
+db	db.py	/^db = DAL('sqlite:\/\/storage.sqlite') $/;"	v
+db	db_wizard.py	/^    db = DAL()$/;"	v
+format	db_wizard.py	/^    format='%(course_name)s')$/;"	v
+format	db_wizard.py	/^    format='%(f_name)s')$/;"	v
+keydata	db.py	/^keydata = {}$/;"	v
+mail	db.py	/^mail=Mail()$/;"	v
+request	db_wizard.py	/^    request = current.request$/;"	v
+settings	0.py	/^settings = Storage()$/;"	v
