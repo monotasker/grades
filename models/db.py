@@ -5,7 +5,7 @@
 ## File is released under public domain and you can use without limitations
 #########################################################################
 
-db = DAL('sqlite://storage.sqlite') 
+db = DAL('sqlite://storage.sqlite')
 
 ## by default give a view/generic.extension to all actions from localhost
 ## none otherwise. a pattern can be 'controller/function.extension'
@@ -23,14 +23,14 @@ response.generic_patterns = ['*'] if request.is_local else []
 
 from gluon.tools import Auth, Crud, Service, PluginManager, prettydate
 from gluon.tools import Mail, Recaptcha
-auth = Auth(db, hmac_key=Auth.get_or_create_key()) 
+auth = Auth(db, hmac_key=Auth.get_or_create_key())
 crud, service, plugins = Crud(db), Service(), PluginManager()
 
 ## create all tables needed by auth if not custom tables
 auth.define_tables()
 
 keydata = {}
-with open('applications/peergrades/private/app.keys', 'r') as keyfile:
+with open('applications/grades/private/app.keys', 'r') as keyfile:
     for line in keyfile:
         k, v = line.split()
 	keydata[k] = v
