@@ -21,8 +21,8 @@ if request.is_local:  # disable in production enviroment
 
 keydata = {}
 with open('applications/grades/private/app.keys', 'r') as keyfile:
-    for line in keyfile:
-        k, v = line.split
+    for myline in keyfile:
+        k, v = myline.split()
         keydata[k] = v
 
 # -------------------------------------------------------------
@@ -65,7 +65,7 @@ current.auth = auth
 # -------------------------------------------------------------
 # misc auth settings
 # -------------------------------------------------------------
-auth.settings.create_user_groups = True
+auth.settings.create_user_groups = False
 auth.settings.label_separator = ''
 
 # create all tables needed by auth if not custom tables
