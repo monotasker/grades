@@ -1,21 +1,15 @@
 {{extend 'layout.html'}}
 
-<h2>Grade Reports</h2>
+<h2>{{=course_name}}</h2>
 
 <section id="viewpane">
 Please select a student from the list.
 </section>
 
 <section id="listpane">
-    {{for k,c in course_d.items():}}
-    {{=H3(k)}}
-        <table>
-        {{for ci in c:}}
-            {{for k,v in ci.items():}} 
-                {{=TR(TD(A(v, _href=URL('grades_detail.load', args=k), cid="viewpane")))}}
-            {{pass}}
-        {{pass}}
-        </table>
+    <ul>
+    {{for sid, sname in students.items():}}
+        {{=LI(A(sname, _href=URL('grades_detail.load', args=[course_id, sid]), cid="viewpane"))}}
     {{pass}}
-    
+    </ul>
 </section>

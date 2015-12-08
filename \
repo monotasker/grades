@@ -1,6 +1,6 @@
 #for PyDev recognition
 if 0:
-    from gluon import current, IS_DECIMAL_IN_RANGE
+    from gluon import current
     from gluon.tools import Auth
     from gluon.dal import DAL, Field
     db = DAL()
@@ -15,14 +15,12 @@ db.define_table('courses',
     format='%(course_name)s')
 
 db.define_table('grades',
-    Field('name', db.auth_user),
+    Field('name', db.auth_user, default=auth.user_id),
     Field('grade', type='double'),
     Field('course', db.courses),
     Field('class_date', type='date'),
     Field('submitted_date', type='date', default=request.now),
-    Field('submitted_by', db.auth_user, default=auth.user_id),
-    format='%(name)s, %(class_date)s, %(grade)s')
-db.grades.grade.requires = IS_DECIMAL_IN_RANGE(1, 10.0)
+    format='%(f_name)s')
 
 db.define_table('course_membership',
     Field('name', db.auth_user, default=auth.user_id),

@@ -1,15 +1,12 @@
-<h3>{{=student}}</h3>
+<h3>{{=student_name}}</h3>
 
+Term Average: {{=avg}}
+
+    {{for date, gradelist in grade_dict.items():}}
+    <h4>{{=date}}</h4>
     <table>
-    {{for l in courselist:}}
-        {{for k,v in l.items():}}
-            {{=TR(TD(k), TD(v))}}
+        {{for grade in gradelist:}}
+            {{=TR(TD(INPUT(_value=grade[0]), BUTTON('update', _value=grade[1])))}}
         {{pass}}
-    {{pass}}
     </table>
-
-{{if request.args[0] > 0:}}
-{{=A('previous student', _href=URL('grades_detail.load', args=(int(request.args[0])-1)), _class="prevnav", cid='viewpane')}}
-{{pass}}
-
-{{=A('next student', _href=URL('grades_detail.load', args=(int(request.args[0])+1)), _class="nextnav", cid='viewpane')}}
+    {{pass}}
