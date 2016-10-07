@@ -28,14 +28,17 @@ def user():
         courserow = db.courses(c.course)
         gradelist = db((db.grades.name == auth.user_id) &
                        (db.grades.course == c.course)).select()
-        s = db.grades.grade.sum()
-        row = db(db.grades.name == auth.user_id).select(s).first()
-        av = row[s]
-        avg = round(av/len(gradelist))
-        curve = courserow.curve
-        if curve == None:
-            curve = 0
-        avg += curve
+        if len(gradelist) == 0:
+            avg = 'no grades assigned yet'
+        else:
+            s = db.grades.grade.sum()
+            row = db(db.grades.name == auth.user_id).select(s).first()
+            av = row[s]
+            avg = round(av/len(gradelist))
+            curve = courserow.curve
+            if curve == None:
+                curve = 0
+            avg += curve
 
         this_c = {courserow.course_name: avg}
         courselist.append(this_c)
