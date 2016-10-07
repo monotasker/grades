@@ -1,0 +1,11 @@
+h1.site-title {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 2em;
+  height: 62px;
+  line-height: 62px;
+  margin: 0;
+  margin-left: 0.5em;
+  margin-right: 1.5em;
+}

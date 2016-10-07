@@ -25,13 +25,13 @@ p11
 ssS'is_active'
 p12
 (dp13
-S'type'
+S'sortable'
 p14
-S'boolean'
-p15
-sS'sortable'
-p16
 I3
+sS'type'
+p15
+S'boolean'
+p16
 sS'sql'
 p17
 S'CHAR(1)'
@@ -57,10 +57,10 @@ ssS'created_by'
 p23
 (dp24
 g14
+I5
+sg15
 S'reference auth_user'
 p25
-sg16
-I5
 sg17
 S'INTEGER REFERENCES auth_user(id) ON DELETE CASCADE'
 p26
@@ -68,10 +68,10 @@ ssS'created_on'
 p27
 (dp28
 g14
+I4
+sg15
 S'datetime'
 p29
-sg16
-I4
 sg17
 S'TIMESTAMP'
 p30
@@ -79,9 +79,9 @@ ssS'modified_on'
 p31
 (dp32
 g14
-g29
-sg16
 I6
+sg15
+g29
 sg17
 S'TIMESTAMP'
 p33
@@ -89,9 +89,9 @@ ssS'modified_by'
 p34
 (dp35
 g14
-g25
-sg16
 I7
+sg15
+g25
 sg17
 S'INTEGER REFERENCES auth_user(id) ON DELETE CASCADE'
 p36

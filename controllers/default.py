@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+
+import json
+import datetime
+
 if 0:
-    from gluon import current, SQLFORM, redirect, A, URL
+    from gluon import current, SQLFORM, redirect, URL, IS_IN_DB
     from gluon.tools import Auth, Crud
     from gluon.dal import DAL
     db = DAL()
@@ -14,24 +18,27 @@ if 0:
 
 ### required - do no delete
 def user():
-    courses = db(db.courses.id > 0).select()
+    debug = True
+    uid = request.vars['user'] if 'user' in request.vars.keys() else auth.user_id
+    if debug: print 'profile for user', uid
+    courses = db(db.course_membership.name == uid).select()
+    if debug: print len(courses), 'courses with membership'
     courselist = []
     for c in courses:
-        try:
-            gradelist = db((db.grades.name == auth.user_id) & (db.grades.course == c.id)).select()
-            s = db.grades.grade.sum()
-            row = db(db.grades.name == auth.user_id).select(s).first()
-            av = row[s]
-            avg = round(av/len(gradelist))
-            curve = c.curve
-            if curve == None:
-                curve = 0
-            avg += curve
+        courserow = db.courses(c.course)
+        gradelist = db((db.grades.name == auth.user_id) &
+                       (db.grades.course == c.course)).select()
+        s = db.grades.grade.sum()
+        row = db(db.grades.name == auth.user_id).select(s).first()
+        av = row[s]
+        avg = round(av/len(gradelist))
+        curve = courserow.curve
+        if curve == None:
+            curve = 0
+        avg += curve
 
-            this_c = {c.course_name: avg}
-            courselist.append(this_c)
-        except:
-            pass
+        this_c = {courserow.course_name: avg}
+        courselist.append(this_c)
 
     return dict(form=auth(), courselist=courselist)
 
@@ -44,7 +51,16 @@ def call(): return service()
 
 
 def index():
-    courses = db(db.courses.id > 0).select()
+    if auth.has_membership('administrators'):
+        courses = [{'course_name': c.course_name, 'id': c.id}
+                   for c in db(db.courses.id > 0).select()]
+    else:
+        usr = auth.user_id
+        courses_raw = db((db.course_membership.course == db.courses.id) &
+                        (db.course_membership.name == usr)).select()
+        courses = [{'course_name': c.courses.course_name, 'id': c.courses.id}
+                for c in courses_raw]
+
     return dict(courses=courses)
 
 
@@ -118,8 +134,10 @@ def create_grade():
 
     the_user = db(db.auth_user.id == auth.user_id).select().first()
     fn = the_user.first_name
-    cancel_button = A('cancel', _href=URL('index'), _class='cancel')
-    return dict(form=form, cancel_button=cancel_button, fn=fn, cname=cname)
+    return dict(form=form,
+                fn=fn,
+                cname=cname,
+                courseid=cnum)
 
 
 @auth.requires_membership(role='administrators')
@@ -136,6 +154,45 @@ def grades_report():
     return {'students': students,
             'course_name': course_name,
             'course_id': classid}
+
+
+@auth.requires_login()
+def view_grades():
+    mycourse = request.args[0]
+    coursetitle = db.courses[mycourse]['course_name']
+    course_student_list = db((db.auth_user.id == db.course_membership.name) &
+                             (db.course_membership.course == mycourse)).select()
+    myassigned = db((db.grades.course == mycourse) &
+                    (db.grades.submitted_by == auth.user_id)).select()
+    assigned_users = list(set([m.name for m in myassigned]))
+    assigned_list = []
+    for user_id in assigned_users:
+        srow = db.auth_user[user_id]
+        student_name = srow.last_name + ', ' + srow.first_name
+        sgrades = [{'grade': g.grade,
+                    'class_date': g.class_date,
+                    'submitted_date': g.submitted_date,
+                    'record_id': g.id}
+                   for g in myassigned.find(lambda r: r.name == user_id)]
+        assigned_list.append({'user_id': user_id,
+                              'name': student_name,
+                              'grades': sgrades})
+    return {'assigned_grades': assigned_list,
+            'course': mycourse,
+            'course_name': coursetitle,
+            'uid': auth.user_id}
+
+
+@auth.requires_login()
+def edit_grades():
+    newvals = request.vars['newvals']
+    newvals = json.loads(newvals)
+    newvals = {int(key): float(val) for key, val in newvals.items()}
+    changed = {}
+    for rowid, val in newvals.items():
+        db.grades[rowid] = {'grade': val, 'submitted_date': datetime.datetime.utcnow()}
+        changed[rowid] = val
+    return str(changed)
 
 
 def grades_detail():

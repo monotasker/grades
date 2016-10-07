@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-if 0:
-    from gluon import DAL, URL
-
 import logging
 from gluon.tools import Auth, Crud, Service, PluginManager
 from gluon.tools import Mail, Recaptcha
 from gluon.globals import current
+if 0:
+    from gluon import DAL, URL
 
 request = current.request
 response = current.response
@@ -90,11 +89,11 @@ auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.messages.verify_email = 'Click on the link http://' \
     + request.env.http_host + URL('default', 'user', args=['verify_email']) \
-    + '/%(key)s to verify your email'
+    + '?key=%(key)s to verify your email'
 auth.settings.reset_password_requires_verification = True
 auth.messages.reset_password = 'Click on the link http://' \
     + request.env.http_host + URL('default', 'user', args=['reset_password'])\
-    + '/%(key)s to reset your password'
+    + '?key=%(key)s to reset your password'
 
 
 # -------------------------------------------------------------

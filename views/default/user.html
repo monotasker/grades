@@ -13,7 +13,11 @@
 
 {{if request.args(0) == 'profile':}}
     <h3>How am I doing so far?</h3>
-    <table>
+    <table class='table'>
+        <tr>
+            <th>Course</th>
+            <th>Average grade to-date</th>
+        </tr>
     {{for l in courselist:}}
         {{for k,v in l.items():}}
             {{=TR(TD(k), TD(v))}}

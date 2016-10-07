@@ -1,0 +1,68 @@
+{{extend 'layout.html'}}
+
+<h2>Grades assigned by me in {{=course_name}}</h2>
+
+<p>
+<a href="{{=URL('default', 'create_grade.html', args=[course])}}">Add new grades</a>
+</p>
+
+<p>Click on a name below to see the grades you have assigned that student so far. You can change any of the listed grades by editing the assigned number
+and then clicking "Save changes" at bottom.
+</p>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+{{for user in assigned_grades:}}
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading{{=user['user_id']}}">
+      <h4 class="panel-title">
+
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{=user['user_id']}}" aria-expanded="false" aria-controls="collapse{{=user['user_id']}}">
+          {{=user['name']}}
+        </a>
+
+      </h4>
+    </div>
+    <div id="collapse{{=user['user_id']}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{=user['user_id']}}" >
+      <div class="panel-body">
+
+        <table class='table table-condensed'>
+            <tr>
+                <th>Class Date</th>
+                <th>Grade Assigned</th>
+                <th>Assigned On</th>
+            </tr>
+            {{for g in user['grades']:}}
+            <tr>
+                <td>{{=g['class_date']}}</td>
+                <td contenteditable='true' class='{{=g['record_id']}}'>{{=g['grade']}}</td>
+                <td>{{=g['submitted_date']}}</td>
+            </tr>
+            {{pass}}
+        </table>
+
+      </div>
+    </div>
+  </div>
+{{pass}}
+</div>
+<button id='edits_submitter'>Save changes</button>
+
+<script type="text/javascript">
+
+$(document).on('click', '#edits_submitter', function(e) {
+    console.log($('#edits_submitter'));
+    var fields = $('td[contenteditable]');
+    var value_obj = {}
+    fields.each(function(){
+        var mynum = $(this).attr('class');
+        value_obj[mynum] = $(this).html();
+    });
+    $.post('/grades/default/edit_grades', {newvals: JSON.stringify(value_obj)}, function(result){
+                console.log('Changed records: ' + result);
+           }
+    );
+    //console.log(value_obj);
+    e.preventDefault();
+});
+
+</script>

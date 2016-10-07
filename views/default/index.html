@@ -1,19 +1,43 @@
 {{extend 'layout.html'}}
 
-<h1>Welcome</h1><p>Please register on this site, log in, and then click on a link below to submit peer grades for a course in which you are enrolled.</p>
 
 {{if auth.is_logged_in():}}
 
-{{for course in courses:}}
-{{content = [A(course.course_name, _href=URL('create_grade', args=[course.id]))]}}
-{{if auth.has_membership('administrators'):
-    adminlist = ['    ',  
-                   A('manage', _href=URL('grades_manage', args=[course.id]), _class='adminlink'),
-                   ' | ',
-                   A('instructor\'s report', _href=URL('grades_report', args=[course.id]), _class='adminlink')]
-    content.extend(adminlist)}}
-{{pass}}
-{{=LI(*content)}}
-{{pass}}
+    <p>
+    Please click on a link below to submit peer grades for a course in which
+    you are enrolled.
+    </p>
+
+    <ul>
+    {{for course in courses:}}
+    {{if auth.has_membership('administrators'):}}
+    <li>
+        <span>{{=course['course_name']}}</span>
+        <a href="{{=URL('create_grade', args=[course['id']])}}">enter a grade</a>
+        |
+        <a href="{{=URL('view_grades', args=[course['id']])}}">my entered grades</a>
+        |
+        <a href="{{=URL('grades_manage', args=[course['id']])}}" class="adminlink">manage</a>
+        |
+        <a href="{{=URL('grades_report', args=[course['id']])}}" class="adminlink">instructor\'s report</a>
+    </li>
+    {{else:}}
+    <li>
+        <span>{{=course['course_name']}}</span>
+        <a href="{{=URL('create_grade', args=[course['id']])}}">enter a grade</a>
+        |
+        <a href="{{=URL('view_grades', args=[course['id']])}}">my entered grades</a>
+    </li>
+    {{pass}}
+    {{pass}}
+    </ul>
+
+{{else:}}
+
+    <h1>Welcome</h1>
+    <p>
+    Please register on this site, log in, and then click on
+    a link below to submit peer grades for a course in which you are enrolled.
+    </p>
 
 {{pass}}
