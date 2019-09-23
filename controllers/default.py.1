@@ -107,7 +107,7 @@ def grades_report():
     for c in courses:
         cn = c.course_name
         l = []
-        for k,s in students.items():
+        for k,s in list(students.items()):
             if db((db.grades.course == c) & (db.grades.name == k)).select():
                 l.append({k:s})
         d[cn] = l
@@ -136,6 +136,6 @@ def grades_detail():
             this_c = {c.course_name:avg}
             courselist.append(this_c)
         except:
-            print ''
+            print('')
     
     return dict(courselist = courselist, student=student)

@@ -2,10 +2,13 @@
 
 import logging
 from gluon.tools import Auth, Crud, Service, PluginManager
-from gluon.tools import Mail, Recaptcha
+from gluon.tools import Mail, Recaptcha2
 from gluon.globals import current
 if 0:
-    from gluon import DAL, URL
+    from web2py.gluon import DAL, URL
+    from web2py.gluon.tools import Auth, Crud, Service, PluginManager
+    from web2py.gluon.tools import Mail, Recaptcha2
+    from web2py.gluon.globals import current
 
 request = current.request
 response = current.response
@@ -100,13 +103,12 @@ auth.messages.reset_password = 'Click on the link http://' \
 # enable recaptcha anti-spam for selected actions
 # -------------------------------------------------------------
 
+mycaptcha = Recaptcha2(request, keydata['captcha_public_key'],
+                       keydata['captcha_private_key'])
 auth.settings.login_captcha = None
-auth.settings.register_captcha = Recaptcha(request,
-    keydata['captcha_public_key'], keydata['captcha_private_key'])
-auth.settings.retrieve_username_captcha = Recaptcha(request,
-    keydata['captcha_public_key'], keydata['captcha_private_key'])
-auth.settings.retrieve_password_captcha = Recaptcha(request,
-    keydata['captcha_public_key'], keydata['captcha_private_key'])
+auth.settings.register_captcha = mycaptcha
+auth.settings.retrieve_username_captcha = mycaptcha
+auth.settings.retrieve_password_captcha = mycaptcha
 
 # -------------------------------------------------------------
 # crud settings

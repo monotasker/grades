@@ -19,10 +19,10 @@ if 0:
 ### required - do no delete
 def user():
     debug = True
-    uid = request.vars['user'] if 'user' in request.vars.keys() else auth.user_id
-    if debug: print 'profile for user', uid
+    uid = request.vars['user'] if 'user' in list(request.vars.keys()) else auth.user_id
+    if debug: print('profile for user', uid)
     courses = db(db.course_membership.name == uid).select()
-    if debug: print len(courses), 'courses with membership'
+    if debug: print(len(courses), 'courses with membership')
     courselist = []
     for c in courses:
         courserow = db.courses(c.course)
@@ -114,7 +114,7 @@ def create_grade():
 
     class_members = db(db.course_membership.course == cnum).select()
     member_nums = [member['id'] for member in class_members]
-    print 'member_nums', member_nums
+    print('member_nums', member_nums)
     mquery = db(db.auth_user.id.belongs(
                     db(db.course_membership.course == cnum)._select(db.course_membership.name)
                                         ))
@@ -190,9 +190,9 @@ def view_grades():
 def edit_grades():
     newvals = request.vars['newvals']
     newvals = json.loads(newvals)
-    newvals = {int(key): float(val) for key, val in newvals.items()}
+    newvals = {int(key): float(val) for key, val in list(newvals.items())}
     changed = {}
-    for rowid, val in newvals.items():
+    for rowid, val in list(newvals.items()):
         db.grades[rowid] = {'grade': val, 'submitted_date': datetime.datetime.utcnow()}
         changed[rowid] = val
     return str(changed)
@@ -208,7 +208,7 @@ def grades_detail():
                  (db.grades.name == sid)).select()
     grade_dict = {}
     for g in sgrades:
-        if g.class_date in grade_dict.keys():
+        if g.class_date in list(grade_dict.keys()):
             grade_dict[g.class_date].append((g.grade, g.id))
         else:
             grade_dict[g.class_date] = [(g.grade, g.id)]

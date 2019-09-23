@@ -50,7 +50,7 @@ response.menu = [[T('design'), False, URL('admin', 'default', 'design',
 
 def get_databases(request):
     dbs = {}
-    for (key, value) in global_env.items():
+    for (key, value) in list(global_env.items()):
         cond = False
         try:
             cond = isinstance(value, GQLDB)
@@ -204,7 +204,7 @@ def select():
             import_csv(db[request.vars.table],
                        request.vars.csvfile.file)
             response.flash = T('data uploaded')
-        except Exception, e:
+        except Exception as e:
             response.flash = DIV(T('unable to parse csv file'),PRE(str(e)))
     if form.accepts(request.vars, formname=None):
 #         regex = re.compile(request.args[0] + '\.(?P<table>\w+)\.id\>0')
@@ -228,7 +228,7 @@ def select():
                         orderby=eval_in_global_env(orderby))
             else:
                 rows = db(query).select(limitby=(start, stop))
-        except Exception, e:
+        except Exception as e:
             (rows, nrows) = ([], 0)
             response.flash = DIV(T('Invalid Query'),PRE(str(e)))
     return dict(
@@ -336,7 +336,7 @@ def ccache():
     disk = copy.copy(ram)
     total = copy.copy(ram)
 
-    for key, value in cache.ram.storage.items():
+    for key, value in list(cache.ram.storage.items()):
         if isinstance(value, dict):
             ram['hits'] = value['hit_total'] - value['misses']
             ram['misses'] = value['misses']
@@ -357,7 +357,7 @@ def ccache():
     portalocker.lock(locker, portalocker.LOCK_EX)
     disk_storage = shelve.open(os.path.join(request.folder, 'cache/cache.shelve'))
     try:
-        for key, value in disk_storage.items():
+        for key, value in list(disk_storage.items()):
             if isinstance(value, dict):
                 disk['hits'] = value['hit_total'] - value['misses']
                 disk['misses'] = value['misses']
