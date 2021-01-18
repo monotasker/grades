@@ -69,6 +69,7 @@ current.auth = auth
 # -------------------------------------------------------------
 auth.settings.create_user_groups = False
 auth.settings.label_separator = ''
+auth.settings.allow_basic_login = True
 
 # create all tables needed by auth if not custom tables
 auth.define_tables()
